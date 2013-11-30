@@ -1,0 +1,6 @@
+PyYAML==3.10
+argparse==1.2.1
+distribute==0.6.24
+nltk==2.0.4
+tweepy==2.1
+wsgiref==0.1.2
