@@ -2,8 +2,9 @@ Installation Steps
 
 1. Clone the repository
 
-git clone 
-cd 
+git clone git@github.com:gauravahuja/twitter_emotion_visualization.git
+cd twitter_emotion_visualization
+
 
 2. Intialize and activate a virtual environment
 
