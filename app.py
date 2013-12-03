@@ -36,6 +36,8 @@ app.config.from_object('config')
 
 @app.route('/')
 def home():
+	global api
+	global auth
 	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 	if api == None:
 		url = auth.get_authorization_url()
@@ -61,6 +63,9 @@ def handleQuery():
 def callback():
 	query = request.args
 	qdict = {}
+	global api
+	global auth
+	
 	for queryItem in query.iteritems():
 		qdict[queryItem[0]] = queryItem[1]
 	verifier = qdict['oauth_verifier']
