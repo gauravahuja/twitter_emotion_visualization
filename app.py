@@ -107,6 +107,7 @@ if not app.debug:
 def getTweets(query="Twitter"):
 	"""
 	"""
+	global api
 	result = []
 	try:
 		for i in range(len(citiList)):
