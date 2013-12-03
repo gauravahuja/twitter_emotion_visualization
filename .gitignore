@@ -32,3 +32,10 @@ coverage.xml
 *.log
 *.pot
 
+cities
+config-test.py
+features
+features*
+fullCorpus*
+wnaEmotionList/
+new_all.txt
