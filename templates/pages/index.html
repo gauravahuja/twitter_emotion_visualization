@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+	<title>Twitter Emotion Visualisation</title> 
+	<style>
+		html { height: 100%;}
+		body { height: 100%; margin: 0; padding: 0;}
+		#map { height: 80%;}
+		.cities {padding: 5px; display:none;}
+		.info {font-weight:bold;}
+		.neutral {background-color:#006600; padding:2px;}
+		.joy {background-color:#FFCC00; padding:2px;}
+		.sadness {background-color:#0066CC; padding:2px;}
+		.anger {background-color:#FF0000; padding:2px;}
+		.love {background-color:#B84DFF; padding:2px;}
+		.fear {background-color:#91918A; padding:2px;}
+		.thankfulness {background-color:#CC9900; padding:2px;}
+		.surprise {background-color:#FF4791; padding:2px;}
+	</style>
+
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyATQYXHHzZr_xIVYNcRmFzHxVOhNLSXc_U&sensor=true"></script> 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="static/js/richmarker-compiled.js"></script>
+
+	<script type="text/javascript"> 
+	
+	var map;
+	var citiList = [['New Delhi',28.6,77.2], ['Mumbai',18.975,72.825833], ['Bangalore',12.983333,77.583333], ['New York',40.7141667,-74.0063889], ['Washington DC',38.8950000,-77.0366667], ['London',51.514125,-.093689], ['Toronto',43.666667,-79.416667], ['Sydney',-33.861481,151.205475], ['Vancouver',49.25,-123.133333], ['Paris',48.866667,2.333333], ['Seattle',47.6063889,-122.3308333]]
+	var markers = [];
+
+	String.format = function() {
+		// The string containing the format items (e.g. "{0}")
+		// will and always has to be the first argument.
+		var theString = arguments[0];
+	
+		// start with the second argument (i = 1)
+		for (var i = 1; i < arguments.length; i++) {
+			// "gm" = RegEx options for Global search (more than one instance)
+			// and for Multiline search
+			var regEx = new RegExp("\\{" + (i - 1) + "\\}", "gm");
+			theString = theString.replace(regEx, arguments[i]);
+		}
+	
+		return theString;
+	}
+	function openInfoWindow(marker)
+	{
+		console.log(marker.title)
+	}
+	
+	function bindInfoWindow(marker, infowindow, strDescription, i) 
+	{
+		google.maps.event.addListener(marker, 'click', function() {
+		    infowindow.setContent(strDescription);
+		    infowindow.open(map, marker);
+		});
+	}
+		
+	function initialize()
+	{
+		var mapOptions = {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 3,
+          scrollwheel: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+		map = new google.maps.Map(document.getElementById("map"), mapOptions);
+		var menu = document.getElementById("select");
+		var newOption = document.createElement("option");
+        newOption.innerHTML = "Select City";
+        menu.appendChild(newOption);
+        for(var i = 0; i < citiList.length; i++) 
+        {
+            var newOption = document.createElement("option");
+            newOption.innerHTML = citiList[i][0];
+            menu.appendChild(newOption);
+        }
+	}
+	
+	function queryBackend()
+	{
+		var x = document.getElementsByName("Cities");
+		for (var i=0; i< markers.length; i++)
+		{
+			markers[i].setMap(null);
+			x[i].style.display="none";
+		}
+		delete markers;
+		var x = document.getElementById("query")
+		var q = "./query?q="+x.value
+		$.getJSON(q, function(result) {listTweets(result);});
+		var img = document.getElementById("loading");
+		img.style.display="inline";
+	}
+	function listTweets(results)
+	{
+		var img = document.getElementById("loading");
+		img.style.display="none";
+		if(results == '-1')
+		{
+			alert("Twitter API limit reached, try after 15 minutes");
+			return;
+		}
+		var results = eval(results);
+		console.log(results.length);
+		var x = document.getElementsByName("Cities");
+		markers = new Array(results.length);
+		for(var i=0; i < results.length; i++)
+		{	
+			var result = results[i]
+			var infoDiv = x[i].children[0];
+			var tweetDiv = x[i].children[1];
+			infoDiv.innerHTML = "";
+			tweetDiv.innerHTML = "";
+			infoDiv.innerHTML = result['city'];
+			var tweets = result['tweets'];
+			for(var j=0; j < tweets.length; j++)
+			{
+				var emotion = tweets[j][0];
+				var tweet_text = tweets[j][1];
+				tweetDiv.innerHTML = tweetDiv.innerHTML + String.format("<p><span class={0}>{0}</span><span>{1}</span></p>", emotion, tweet_text)
+			}
+			var myLatlng = new google.maps.LatLng(citiList[i][1],citiList[i][2]);
+			var contentString = String.format("City: {0}. </BR> Neutral: {1}</BR>Joy: {2}</BR>Sadness: {3}</BR>Thankfullness: {4}</BR>Anger: {5}</BR>Fear: {6}</BR>Love: {7}</BR>Surprise: {8}", result['city'], result['neutral'], result['joy'], result['sadness'], result['thankfulness'], result['anger'], result['fear'], result['love'], result['surprise']);
+			var marker = new google.maps.Marker({position: myLatlng, map: map, title: citiList[i][0]});
+			var infoWindow = new google.maps.InfoWindow();
+			markers[i] = marker;
+			bindInfoWindow(marker,infoWindow, contentString, i);
+		}
+	}
+	function getComboA(sel) 
+	{
+		var x = document.getElementsByName("Cities");
+		for (var i=0; i<x.length; i++)
+		{
+			x[i].style.display="none";
+		}
+		var index = sel.selectedIndex;
+		if (index > 0)
+		{
+			x[index-1].style.display="block";
+			console.log(index-1);
+		}
+    	
+    }
+	
+	google.maps.event.addDomListener(window, 'load', initialize);
+
+	</script>
+
+</head> 
+<body> 
+	<div style="height:40px;padding:5px;">
+		<input style="height:20px;" type="text" id="query">
+		<button style="height:40px;" type="button" onclick="queryBackend()">Query</button>
+		<img src="static/img/loading.gif" alt="loading" height="20" width="20" id="loading" style="display:none;"> 
+	</div>
+	<div id="map"></div>
+	<select id="select" onchange="getComboA(this)"></select>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	<div name="Cities" class="cities">
+		<div class="info" name="Info"></div>
+		<div class ="tweets" name="Tweets"></div>
+	</div>
+	
+</body> 
+</html>
