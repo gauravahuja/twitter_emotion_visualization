@@ -116,6 +116,7 @@ def getTweets(query="Twitter"):
 			lg = citiList[i][2]
 			g = "%f,%f,100mi" %(lat, lg)
 			s = api.search(q=query, lang="en", geocode=g, result_type="mixed", rpp=20)
+			print "response %s" %(s)
 			s = json.loads(s)
 			tweets = s['statuses']
 			tweet_result = []
