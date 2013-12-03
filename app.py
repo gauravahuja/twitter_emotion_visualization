@@ -10,6 +10,7 @@ import json
 import tweepy
 from corpusHandler import *
 from tweetHandler import *
+import sys
 
 consumer_key="FPqNv44c0qEbfcaW1Nw8g"
 consumer_secret="1HBmN07H4oD2f7qtXgurb1dRc47lR84tU0E4WhhvM"
@@ -43,6 +44,10 @@ def home():
 		url = auth.get_authorization_url()
 		session['request_token'] = (auth.request_token.key, auth.request_token.secret)
 		return redirect(url)
+	else:
+		auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+		auth.set_access_token(access_key, access_token_secret)
+		api = tweepy.API(auth, parser=tweepy.parsers.RawParser())
 	return render_template('pages/index.html')
 
 @app.route('/query',methods=['GET'])
@@ -65,7 +70,8 @@ def callback():
 	qdict = {}
 	global api
 	global auth
-	
+	global access_key
+	global access_token_secret	
 	for queryItem in query.iteritems():
 		qdict[queryItem[0]] = queryItem[1]
 	verifier = qdict['oauth_verifier']
@@ -76,9 +82,8 @@ def callback():
 	auth.set_request_token(token[0], token[1])
 	auth.get_access_token(verifier)
 	access_key = auth.access_token.key
-	access_secret = auth.access_token.secret
+	access_token_secret = auth.access_token.secret
 	api = tweepy.API(auth, parser=tweepy.parsers.RawParser)	
-	
 	return redirect('/')
 # Error handlers.
 
@@ -114,7 +119,9 @@ def getTweets(query="Twitter"):
 			lat = citiList[i][1]
 			lg = citiList[i][2]
 			g = "%f,%f,100mi" %(lat, lg)
-			s = api.search(q=query, lang="en", geocode=g, result_type="mixed", rpp=20)
+			try:
+				s = api.search(q=query, lang="en", geocode=g, result_type="mixed", rpp=20)
+			except e:
 			print "response %s" %(s)
 			s = json.loads(s)
 			tweets = s['statuses']
