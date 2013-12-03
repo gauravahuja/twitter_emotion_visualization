@@ -122,7 +122,9 @@ def getTweets(query="Twitter"):
 			try:
 				s = api.search(q=query, lang="en", geocode=g, result_type="mixed", rpp=20)
 			except e:
-			print "response %s" %(s)
+				e = sys.exc_info()[0]
+				print e
+			#print "response %s" %(s)
 			s = json.loads(s)
 			tweets = s['statuses']
 			tweet_result = []
