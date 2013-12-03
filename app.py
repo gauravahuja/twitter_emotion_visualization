@@ -80,7 +80,7 @@ def getTweets(query="Twitter"):
 	"""
 	result = []
 	try:
-		for i in range(3):
+		for i in range(len(citiList)):
 			print citiList[i][0]
 			lat = citiList[i][1]
 			lg = citiList[i][2]
