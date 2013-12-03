@@ -38,8 +38,8 @@ app.config.from_object('config')
 def home():
 	global api
 	global auth
-	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 	if api == None:
+		auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 		url = auth.get_authorization_url()
 		session['request_token'] = (auth.request_token.key, auth.request_token.secret)
 		return redirect(url)
