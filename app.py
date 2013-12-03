@@ -77,8 +77,7 @@ def callback():
 	auth.get_access_token(verifier)
 	access_key = auth.access_token.key
 	access_secret = auth.access_token.secret
-	
-	api = tweepy.API(auth)	
+	api = tweepy.API(auth, parser=tweepy.parsers.RawParser)	
 	
 	return redirect('/')
 # Error handlers.
