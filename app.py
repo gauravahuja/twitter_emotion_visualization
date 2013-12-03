@@ -11,13 +11,12 @@ import tweepy
 from corpusHandler import *
 from tweetHandler import *
 
-consumer_key="ljL1nC6lMBUPyEdeUMIlA"
-consumer_secret="bt135Kr70KW4Qs2TmG6b1QcZoAp9Df9tPRhcQyQ"
-access_key = "107602904-p9t2kUIwiPvQ6FHjWsfETC3LkOBOJkNeyFO2uyIF"
-access_token_secret = "MHs8RG4Kt7Z7ijriE1yVHLN5kCbPJHakwPoI5g8tmftFF"
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_key, access_token_secret)
-api = tweepy.API(auth, parser=tweepy.parsers.RawParser())
+consumer_key="FPqNv44c0qEbfcaW1Nw8g"
+consumer_secret="1HBmN07H4oD2f7qtXgurb1dRc47lR84tU0E4WhhvM"
+access_key = ""
+access_token_secret = ""
+auth = None
+api = None
 
 citiList = [('New Delhi',28.6,77.2), ('Mumbai',18.975,72.825833), ('Bangalore',12.983333,77.583333), ('New York',40.7141667,-74.0063889), ('Washington',38.8950000,-77.0366667), ('London',51.514125,-.093689), ('Toronto',43.666667,-79.416667), ('Sydney',-33.861481,151.205475), ('Vancouver',49.25,-123.133333), ('Paris',48.866667,2.333333), ('Seattle',47.6063889,-122.3308333)]
 
@@ -37,6 +36,11 @@ app.config.from_object('config')
 
 @app.route('/')
 def home():
+	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+	if api == None:
+		url = auth.get_authorization_url()
+		session['request_token'] = (auth.request_token.key, auth.request_token.secret)
+		return redirect(url)
 	return render_template('pages/index.html')
 
 @app.route('/query',methods=['GET'])
@@ -52,6 +56,26 @@ def handleQuery():
 		q = qdict['q']	
 	s = getTweets(q)
 	return json.dumps(s)
+
+@app.route('/success',methods=['GET'])
+def callback():
+	query = request.args
+	qdict = {}
+	for queryItem in query.iteritems():
+		qdict[queryItem[0]] = queryItem[1]
+	verifier = qdict['oauth_verifier']
+	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+	token = session['request_token']
+	del session['request_token']
+	
+	auth.set_request_token(token[0], token[1])
+	auth.get_access_token(verifier)
+	access_key = auth.access_token.key
+	access_secret = auth.access_token.secret
+	
+	api = tweepy.API(auth)	
+	
+	return redirect('/')
 # Error handlers.
 
 #@app.errorhandler(500)
