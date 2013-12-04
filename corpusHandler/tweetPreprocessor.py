@@ -8,14 +8,15 @@ import re
 
 
 class tweetPreprocessor:
-	
+	"""
+	tweetPreprocessor Class
+	"""	
 	def __init__(self, tweetList_file, tweet_dir, output_file):
 		"""
-		Initializes the tweet preprocessor
-			tweetList_file: File where each line specifies a tweet id and its emotion. eg "tweet_id emotion"
-			tweet_dir: The path of the directory containing tweets. Each tweet is in a file <tweet_id>.json
-			output_file: File to output preprocessed tweets.
-				Format of output file "tweet id, emotion, preprocessed tweet"				 		
+		Initializes the tweet preprocessor. Parameters:
+			1. tweetList_file: File where each line specifies a tweet id and its emotion. eg "tweet_id emotion"
+			2. tweet_dir: The path of the directory containing tweets. Each tweet is in a file <tweet_id>.json
+			3. output_file: File to output preprocessed tweets. Format of output file "tweet id, emotion, preprocessed tweet"				 		
 		"""
 		self.logger = logging.getLogger("corpusHandler.tweetDownloader.%s" %(output_file))
 		self.logger.setLevel(logging.DEBUG)
@@ -27,6 +28,7 @@ class tweetPreprocessor:
 	
 	def initialize(self): 
 		"""
+		Internal Function. Used Internally
 		"""
 		f = open(self.tweetList_file)
 		l = f.readline()
@@ -39,6 +41,13 @@ class tweetPreprocessor:
 		f.close()
 	
 	def getTweetText(self, tweetFile):
+		"""
+		Gets the tweet text from a file containing tweet in json format. The tweetDownloader class downloads each tweet in json format. Parameters:
+			1. tweetFile: File name of json file.
+		
+		return: tweet text
+		rtype: string
+		"""
 		f =  open(tweetFile)
 		tweet = json.load(f)
 		f.close()
@@ -48,6 +57,12 @@ class tweetPreprocessor:
 	
 	
 	def preprocess_tweet(self,tweet_text):
+		"""
+		Preprocesses individual tweet. Handles hashtags, punctuations etc. Parameters:
+			1. tweet_text: The tweet to be preprocessed
+		return: preprocessed tweet text
+		rtype : string
+		"""
 		tweet_text = tweet_text.replace('@', ' @')
 		tweet_text = tweet_text.replace('#', ' ')
 		tweet_text = tweet_text.replace(',', ' , ')
@@ -65,6 +80,9 @@ class tweetPreprocessor:
 		return tweet_text
 		
 	def preprocess(self):
+		"""
+		Starts the preprocessing of all the tweet files in the tweet_dir and specified in tweetList_file and saves them to output_file. All these parameters are given while creating an object of this class.
+		"""
 		tweet_files = os.listdir(self.tweet_dir)
 		f = open(self.output_file, 'w')
 		for tweet_file in tweet_files:

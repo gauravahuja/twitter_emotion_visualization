@@ -1,5 +1,10 @@
 """
 @package Corpus Handler
+
+Provides the follwing classes:
+	1. tweetDownloader: Assits in downloaded tweets from given tweet ids.
+	2. tweetPreprocessor: Preprocess the tweets downloaded using the tweetDownloader class
+	3. wnaParser: Parses the Word net affect corpus.
 """
 
 from tweetDownloader import *

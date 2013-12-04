@@ -14,10 +14,11 @@ import sys
 
 consumer_key="FPqNv44c0qEbfcaW1Nw8g"
 consumer_secret="1HBmN07H4oD2f7qtXgurb1dRc47lR84tU0E4WhhvM"
-access_key = ""
-access_token_secret = ""
-auth = None
-api = None
+access_key = "2189504173-Q8LwLKuilssZOOpBWXvDKOiztMDh2C4xVI6qx2J"
+access_token_secret = "aGyruiniveLYpBF04IA7nSDLcjExKhIge6wyTPPPafqgC"
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_key, access_token_secret)
+api = tweepy.API(auth, parser=tweepy.parsers.RawParser())
 
 citiList = [('New Delhi',28.6,77.2), ('Mumbai',18.975,72.825833), ('Bangalore',12.983333,77.583333), ('New York',40.7141667,-74.0063889), ('Washington',38.8950000,-77.0366667), ('London',51.514125,-.093689), ('Toronto',43.666667,-79.416667), ('Sydney',-33.861481,151.205475), ('Vancouver',49.25,-123.133333), ('Paris',48.866667,2.333333), ('Seattle',47.6063889,-122.3308333)]
 
@@ -37,17 +38,6 @@ app.config.from_object('config')
 
 @app.route('/')
 def home():
-	global api
-	global auth
-	if session.get('authorised', 0) == 0:
-		auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-		url = auth.get_authorization_url()
-		session['request_token'] = (auth.request_token.key, auth.request_token.secret)
-		return redirect(url)
-	else:
-		auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-		auth.set_access_token(access_key, access_token_secret)
-		api = tweepy.API(auth, parser=tweepy.parsers.RawParser())
 	return render_template('pages/index.html')
 
 @app.route('/query',methods=['GET'])

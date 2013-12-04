@@ -6,16 +6,25 @@ from nltk.stem.porter import PorterStemmer
 
 class wnaParser:
 	"""
+	wnaParser Class
 	"""
 	
 	def __init__(self, wna_dir, wna_files):
 		"""
+		Initializes the class. Parameters:
+			1. wna_dir: Path to Word net affect corpus
+			2. wna_files: List of files in the corpus that need to be parsed.
 		"""
 		self.wna_dir = wna_dir
 		self.wna_files = wna_files
 	
 	def parse(self, pickledFile):
 		"""
+		This function should be called after initialization and parses the wna corpus and saves in the pickledFile in python cPickle format.
+			1. pickledFile: File to save the parsed wna corpus
+		
+		return: A Dictionary where keys are wna corpus emotion labels and values are list of words/synsets in that label
+		rtype: dict
 		"""
 		wnaEmotion_list = {}
 		for fileName in self.wna_files:
@@ -52,6 +61,12 @@ class wnaParser:
 	
 	def parse_stemmed(self, pickledFile):
 		"""
+		This function should be called after initialization and parses the wna corpus and saves in the pickledFile in python cPickle format.
+		This function also stemms each word in the wna corpus.
+			1. pickledFile: File to save the parsed wna corpus
+		
+		return: A Dictionary where keys are wna corpus emotion labels and values are list of words/synsets in that label
+		rtype: dict
 		"""
 		wnaEmotion_list = {}
 		for fileName in self.wna_files:
@@ -69,6 +84,5 @@ class wnaParser:
 		pickle.dump(wnaEmotion_list, f, protocol=2)
 		f.close()
 		return wnaEmotion_list.copy()
-	
-		
+			
 

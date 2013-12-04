@@ -56,7 +56,7 @@ class tweetDownloader:
 		
 	def initialize(self):
 		"""
-	
+		Internal Function. Used Internally	
 		"""
 		for i in range(tweetDownloader.maxTweetsInWindow):
 			self.q.append(time.time())
@@ -89,6 +89,9 @@ class tweetDownloader:
 					self.error[tid] = tweetDownloader.tweetStatus["error"]
 		
 	def saveStatus(self):
+		"""
+		Internal function. Used Internally
+		"""
 		lines = []
 		nc = 0
 		for (tid, status) in self.notCompleted.items():
@@ -118,10 +121,16 @@ class tweetDownloader:
 		self.logger.info("Downloaded %d, Error %d, Remaining %d" %(c, e+e88, nc))
 		
 	def getTweetFile(self,tid):
+		"""
+		Internal Function used internally
+		"""
 		fileName = "%s/%d.json" %(self.download_dir,tid)
 		return fileName
 		
 	def downloadTweet(self, tid):
+		"""
+		Internal Function used internally
+		"""
 		del self.notCompleted[tid]
 		status = -1
 		try:
@@ -146,6 +155,9 @@ class tweetDownloader:
 		self.logger.debug("Downloading tweet: %d, Status: %s" %(tid, tweetDownloader.tweetStatus[status]))
 
 	def download(self):
+		"""
+		After initialization this function should be called to start the downloading process.
+		"""
 		tids = self.notCompleted.keys()
 		inccount = len(tids)
 		TI = 0
