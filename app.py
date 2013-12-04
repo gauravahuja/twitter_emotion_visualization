@@ -39,7 +39,7 @@ app.config.from_object('config')
 def home():
 	global api
 	global auth
-	if api == None:
+	if session.get('authorised', 0) == 0:
 		auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 		url = auth.get_authorization_url()
 		session['request_token'] = (auth.request_token.key, auth.request_token.secret)
@@ -84,6 +84,7 @@ def callback():
 	access_key = auth.access_token.key
 	access_token_secret = auth.access_token.secret
 	api = tweepy.API(auth, parser=tweepy.parsers.RawParser)	
+	session['authorised'] =1
 	return redirect('/')
 # Error handlers.
 
