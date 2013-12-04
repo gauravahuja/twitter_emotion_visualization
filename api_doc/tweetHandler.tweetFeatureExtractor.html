@@ -1,0 +1,65 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: class tweetFeatureExtractor</title>
+</head><body bgcolor="#f0f0f8">
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>tweetHandler.tweetFeatureExtractor</strong> = <a name="tweetHandler.tweetFeatureExtractor">class tweetFeatureExtractor</a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>tweetFeatureExtractor&nbsp;Class<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="tweetFeatureExtractor-__init__"><strong>__init__</strong></a>(self, emotionDict, wnaDict<font color="#909090">={}</font>)</dt><dd><tt>Initializes&nbsp;the&nbsp;tweetFeatureExtractor&nbsp;Class<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;emotionDict:&nbsp;Dictionary&nbsp;that&nbsp;maps&nbsp;emotion&nbsp;to&nbsp;a&nbsp;number&nbsp;and&nbsp;vice&nbsp;versa.&nbsp;The&nbsp;numbers&nbsp;should&nbsp;be&nbsp;consecutive&nbsp;starting&nbsp;from&nbsp;1.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;wnaDict&nbsp;(optional):&nbsp;This&nbsp;Dictonary&nbsp;maps&nbsp;words&nbsp;in&nbsp;Word&nbsp;net&nbsp;affect&nbsp;to&nbsp;its&nbsp;emotion.&nbsp;Key&nbsp;is&nbsp;emotion&nbsp;and&nbsp;value&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;words.</tt></dd></dl>
+
+<dl><dt><a name="tweetFeatureExtractor-batchExtract"><strong>batchExtract</strong></a>(self, tweetList)</dt><dd><tt>This&nbsp;function&nbsp;extracts&nbsp;features&nbsp;from&nbsp;a&nbsp;list&nbsp;of&nbsp;tweets.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;tweetList:&nbsp;List&nbsp;of&nbsp;tweet&nbsp;texts.<br>
+&nbsp;<br>
+return:&nbsp;List&nbsp;of&nbsp;features&nbsp;for&nbsp;every&nbsp;tweet&nbsp;in&nbsp;tweetList<br>
+rtype:&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="tweetFeatureExtractor-corpusExtract"><strong>corpusExtract</strong></a>(self, corpusFile, outputFile)</dt><dd><tt>This&nbsp;function&nbsp;extracts&nbsp;features&nbsp;from&nbsp;a&nbsp;corpus&nbsp;containing&nbsp;tweets&nbsp;and&nbsp;outputs&nbsp;the&nbsp;features&nbsp;in&nbsp;file.&nbsp;The&nbsp;features&nbsp;that&nbsp;are&nbsp;saved&nbsp;in&nbsp;the&nbsp;file&nbsp;are&nbsp;consistent&nbsp;with&nbsp;MEGAM&nbsp;package&nbsp;used&nbsp;for&nbsp;training.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;corpusFile:&nbsp;File&nbsp;name&nbsp;of&nbsp;the&nbsp;corpus.&nbsp;It&nbsp;should&nbsp;be&nbsp;a&nbsp;text&nbsp;file&nbsp;with&nbsp;each&nbsp;line&nbsp;having&nbsp;the&nbsp;following&nbsp;format:&nbsp;"tweet_id,Annotated&nbsp;emotion,tweet_text"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;outputFile:&nbsp;File&nbsp;name&nbsp;with&nbsp;the&nbsp;features&nbsp;will&nbsp;be&nbsp;saved.&nbsp;Format&nbsp;of&nbsp;this&nbsp;file&nbsp;"emotion_id&nbsp;feature_1&nbsp;value_1&nbsp;...&nbsp;feature_n&nbsp;value_n"</tt></dd></dl>
+
+<dl><dt><a name="tweetFeatureExtractor-getDictString"><strong>getDictString</strong></a>(self, d)</dt><dd><tt>This&nbsp;function&nbsp;converts&nbsp;the&nbsp;dictionary&nbsp;containing&nbsp;features&nbsp;to&nbsp;a&nbsp;string.&nbsp;The&nbsp;string&nbsp;returned&nbsp;is&nbsp;consistent&nbsp;with&nbsp;the&nbsp;MEGA&nbsp;Model&nbsp;Optimization&nbsp;Package&nbsp;expectations.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;d:&nbsp;Dictionary&nbsp;where&nbsp;keys&nbsp;are&nbsp;features&nbsp;and&nbsp;corresponding&nbsp;values&nbsp;are&nbsp;weights&nbsp;for&nbsp;the&nbsp;feature.<br>
+&nbsp;<br>
+return:&nbsp;Feature&nbsp;String&nbsp;consistent&nbsp;with&nbsp;the&nbsp;MEGAM&nbsp;package<br>
+rtype:&nbsp;String</tt></dd></dl>
+
+<dl><dt><a name="tweetFeatureExtractor-getUnigramDict"><strong>getUnigramDict</strong></a>(self, words, d<font color="#909090">={}</font>)</dt><dd><tt>This&nbsp;functions&nbsp;adds&nbsp;unigram&nbsp;features&nbsp;to&nbsp;a&nbsp;feature&nbsp;dictionary.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;words:&nbsp;List&nbsp;of&nbsp;words&nbsp;in&nbsp;the&nbsp;tweet/sentence.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;d&nbsp;(optional):&nbsp;Existing&nbsp;dictionary&nbsp;d&nbsp;is&nbsp;populated&nbsp;with&nbsp;these&nbsp;features.&nbsp;If&nbsp;d&nbsp;is&nbsp;not&nbsp;provided&nbsp;a&nbsp;dictionary&nbsp;containg&nbsp;only&nbsp;unigram&nbsp;features&nbsp;is&nbsp;returned.&nbsp;If&nbsp;d&nbsp;is&nbsp;provided,&nbsp;these&nbsp;features&nbsp;are&nbsp;added&nbsp;to&nbsp;existed&nbsp;d&nbsp;and&nbsp;a&nbsp;copy&nbsp;of&nbsp;updated&nbsp;dictionary&nbsp;is&nbsp;returned.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Words&nbsp;latter&nbsp;in&nbsp;the&nbsp;sentence&nbsp;are&nbsp;given&nbsp;higher&nbsp;weights<br>
+&nbsp;<br>
+return:&nbsp;Dictionary&nbsp;containing&nbsp;key&nbsp;as&nbsp;unigram&nbsp;feature&nbsp;and&nbsp;value&nbsp;as&nbsp;its&nbsp;weight<br>
+rtyrpe:&nbsp;Dictionary</tt></dd></dl>
+
+<dl><dt><a name="tweetFeatureExtractor-getWnaDict"><strong>getWnaDict</strong></a>(self, words, d<font color="#909090">={}</font>)</dt><dd><tt>This&nbsp;functions&nbsp;adds&nbsp;features&nbsp;which&nbsp;correspond&nbsp;to&nbsp;count&nbsp;of&nbsp;words&nbsp;in&nbsp;sentence&nbsp;that&nbsp;match&nbsp;with&nbsp;labels&nbsp;in&nbsp;Word&nbsp;net&nbsp;affect&nbsp;corpus.&nbsp;These&nbsp;features&nbsp;are&nbsp;added&nbsp;to&nbsp;a&nbsp;dictionary.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;words:&nbsp;List&nbsp;of&nbsp;words&nbsp;in&nbsp;the&nbsp;tweet/sentence.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;d&nbsp;(optional):&nbsp;Existing&nbsp;dictionary&nbsp;d&nbsp;is&nbsp;populated&nbsp;with&nbsp;these&nbsp;features.&nbsp;If&nbsp;d&nbsp;is&nbsp;not&nbsp;provided&nbsp;a&nbsp;dictionary&nbsp;containg&nbsp;only&nbsp;wna&nbsp;features&nbsp;is&nbsp;returned.&nbsp;If&nbsp;d&nbsp;is&nbsp;provided,&nbsp;these&nbsp;features&nbsp;are&nbsp;added&nbsp;to&nbsp;existed&nbsp;d&nbsp;and&nbsp;a&nbsp;copy&nbsp;of&nbsp;updated&nbsp;dictionary&nbsp;is&nbsp;returned.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;<br>
+return:&nbsp;Dictionary&nbsp;containing&nbsp;key&nbsp;as&nbsp;unigram&nbsp;feature&nbsp;and&nbsp;value&nbsp;as&nbsp;its&nbsp;weight<br>
+rtyrpe:&nbsp;Dictionary</tt></dd></dl>
+
+<dl><dt><a name="tweetFeatureExtractor-preprocess_tweet"><strong>preprocess_tweet</strong></a>(self, tweet_text)</dt><dd><tt>This&nbsp;function&nbsp;preprocesses&nbsp;the&nbsp;tweet&nbsp;text.&nbsp;Handles&nbsp;hashtags,&nbsp;punctuations&nbsp;etc.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;tweet_text:&nbsp;text&nbsp;of&nbsp;each&nbsp;tweet<br>
+return:&nbsp;preprocessed&nbsp;tweet&nbsp;text<br>
+rtype:&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="tweetFeatureExtractor-tweetExtract"><strong>tweetExtract</strong></a>(self, tweet_text)</dt><dd><tt>Extracts&nbsp;features&nbsp;from&nbsp;the&nbsp;given&nbsp;tweet&nbsp;text.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;tweet_text:&nbsp;string&nbsp;of&nbsp;tweet&nbsp;text<br>
+&nbsp;<br>
+return:&nbsp;A&nbsp;feature&nbsp;dictionary&nbsp;where&nbsp;keys&nbsp;are&nbsp;features&nbsp;and&nbsp;corresponding&nbsp;value&nbsp;is&nbsp;weight&nbsp;for&nbsp;that&nbsp;feature<br>
+rtype:&nbsp;dict</tt></dd></dl>
+
+</td></tr></table>
+</body></html>

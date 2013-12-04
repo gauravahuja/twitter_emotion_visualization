@@ -1,0 +1,67 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: package corpusHandler</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>corpusHandler</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/gaurav/Documents/Columbia/SET-CS6998/project/twitter_emotion_visualization/corpusHandler/__init__.py">/home/gaurav/Documents/Columbia/SET-CS6998/project/twitter_emotion_visualization/corpusHandler/__init__.py</a></font></td></tr></table>
+    <p><tt>@package&nbsp;Corpus&nbsp;Handler<br>
+&nbsp;<br>
+Provides&nbsp;the&nbsp;follwing&nbsp;classes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;tweetDownloader:&nbsp;Assits&nbsp;in&nbsp;downloaded&nbsp;tweets&nbsp;from&nbsp;given&nbsp;tweet&nbsp;ids.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;tweetPreprocessor:&nbsp;Preprocess&nbsp;the&nbsp;tweets&nbsp;downloaded&nbsp;using&nbsp;the&nbsp;tweetDownloader&nbsp;class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;wnaParser:&nbsp;Parses&nbsp;the&nbsp;Word&nbsp;net&nbsp;affect&nbsp;corpus.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Package Contents</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="corpusHandler.tweetDownloader.html">tweetDownloader</a><br>
+</td><td width="25%" valign=top><a href="corpusHandler.tweetPreprocessor.html">tweetPreprocessor</a><br>
+</td><td width="25%" valign=top><a href="corpusHandler.wnaParser.html">wnaParser</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-select"><strong>select</strong></a>(...)</dt><dd><tt><a href="#-select">select</a>(rlist,&nbsp;wlist,&nbsp;xlist[,&nbsp;timeout])&nbsp;-&gt;&nbsp;(rlist,&nbsp;wlist,&nbsp;xlist)<br>
+&nbsp;<br>
+Wait&nbsp;until&nbsp;one&nbsp;or&nbsp;more&nbsp;file&nbsp;descriptors&nbsp;are&nbsp;ready&nbsp;for&nbsp;some&nbsp;kind&nbsp;of&nbsp;I/O.<br>
+The&nbsp;first&nbsp;three&nbsp;arguments&nbsp;are&nbsp;sequences&nbsp;of&nbsp;file&nbsp;descriptors&nbsp;to&nbsp;be&nbsp;waited&nbsp;for:<br>
+rlist&nbsp;--&nbsp;wait&nbsp;until&nbsp;ready&nbsp;for&nbsp;reading<br>
+wlist&nbsp;--&nbsp;wait&nbsp;until&nbsp;ready&nbsp;for&nbsp;writing<br>
+xlist&nbsp;--&nbsp;wait&nbsp;for&nbsp;an&nbsp;``exceptional&nbsp;condition''<br>
+If&nbsp;only&nbsp;one&nbsp;kind&nbsp;of&nbsp;condition&nbsp;is&nbsp;required,&nbsp;pass&nbsp;[]&nbsp;for&nbsp;the&nbsp;other&nbsp;lists.<br>
+A&nbsp;file&nbsp;descriptor&nbsp;is&nbsp;either&nbsp;a&nbsp;socket&nbsp;or&nbsp;file&nbsp;object,&nbsp;or&nbsp;a&nbsp;small&nbsp;integer<br>
+gotten&nbsp;from&nbsp;a&nbsp;fileno()&nbsp;method&nbsp;call&nbsp;on&nbsp;one&nbsp;of&nbsp;those.<br>
+&nbsp;<br>
+The&nbsp;optional&nbsp;4th&nbsp;argument&nbsp;specifies&nbsp;a&nbsp;timeout&nbsp;in&nbsp;seconds;&nbsp;it&nbsp;may&nbsp;be<br>
+a&nbsp;floating&nbsp;point&nbsp;number&nbsp;to&nbsp;specify&nbsp;fractions&nbsp;of&nbsp;seconds.&nbsp;&nbsp;If&nbsp;it&nbsp;is&nbsp;absent<br>
+or&nbsp;None,&nbsp;the&nbsp;call&nbsp;will&nbsp;never&nbsp;time&nbsp;out.<br>
+&nbsp;<br>
+The&nbsp;return&nbsp;value&nbsp;is&nbsp;a&nbsp;tuple&nbsp;of&nbsp;three&nbsp;lists&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;first&nbsp;three<br>
+arguments;&nbsp;each&nbsp;contains&nbsp;the&nbsp;subset&nbsp;of&nbsp;the&nbsp;corresponding&nbsp;file&nbsp;descriptors<br>
+that&nbsp;are&nbsp;ready.<br>
+&nbsp;<br>
+***&nbsp;IMPORTANT&nbsp;NOTICE&nbsp;***<br>
+On&nbsp;Windows&nbsp;and&nbsp;OpenVMS,&nbsp;only&nbsp;sockets&nbsp;are&nbsp;supported;&nbsp;on&nbsp;Unix,&nbsp;all&nbsp;file<br>
+descriptors&nbsp;can&nbsp;be&nbsp;used.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>formatter</strong> = &lt;logging.Formatter object&gt;<br>
+<strong>handler</strong> = &lt;logging.FileHandler object&gt;<br>
+<strong>logger</strong> = &lt;logging.Logger object&gt;</td></tr></table>
+</body></html>

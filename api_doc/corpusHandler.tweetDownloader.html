@@ -1,0 +1,44 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: class tweetDownloader</title>
+</head><body bgcolor="#f0f0f8">
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>corpusHandler.tweetDownloader</strong> = <a name="corpusHandler.tweetDownloader">class tweetDownloader</a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Tweet&nbsp;Downloader&nbsp;class<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="tweetDownloader-__init__"><strong>__init__</strong></a>(self, consumer_key, consumer_secret, access_key, access_token_secret, download_dir, tweetList_file)</dt><dd><tt>Initializes&nbsp;the&nbsp;tweetDownloader&nbsp;instance&nbsp;with<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;consumer_key:&nbsp;Twitter&nbsp;application&nbsp;consumer&nbsp;key<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;consumer_secret:&nbsp;Twitter&nbsp;application&nbsp;consumer&nbsp;secret<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;access_key:&nbsp;Access&nbsp;key&nbsp;of&nbsp;Twitter&nbsp;user&nbsp;who&nbsp;has&nbsp;authorized&nbsp;this&nbsp;app<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;access_token_secret:&nbsp;Access&nbsp;token&nbsp;secret&nbsp;of&nbsp;Twitter&nbsp;user&nbsp;who&nbsp;has&nbsp;authorized&nbsp;this&nbsp;app<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;download_dir:&nbsp;Directory&nbsp;where&nbsp;the&nbsp;tweets&nbsp;will&nbsp;be&nbsp;directed<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tweetList_file:&nbsp;File&nbsp;where&nbsp;each&nbsp;line&nbsp;specifies&nbsp;a&nbsp;tweet&nbsp;id</tt></dd></dl>
+
+<dl><dt><a name="tweetDownloader-download"><strong>download</strong></a>(self)</dt><dd><tt>After&nbsp;initialization&nbsp;this&nbsp;function&nbsp;should&nbsp;be&nbsp;called&nbsp;to&nbsp;start&nbsp;the&nbsp;downloading&nbsp;process.</tt></dd></dl>
+
+<dl><dt><a name="tweetDownloader-downloadTweet"><strong>downloadTweet</strong></a>(self, tid)</dt><dd><tt>Internal&nbsp;Function&nbsp;used&nbsp;internally</tt></dd></dl>
+
+<dl><dt><a name="tweetDownloader-getTweetFile"><strong>getTweetFile</strong></a>(self, tid)</dt><dd><tt>Internal&nbsp;Function&nbsp;used&nbsp;internally</tt></dd></dl>
+
+<dl><dt><a name="tweetDownloader-initialize"><strong>initialize</strong></a>(self)</dt><dd><tt>Internal&nbsp;Function.&nbsp;Used&nbsp;Internally</tt></dd></dl>
+
+<dl><dt><a name="tweetDownloader-saveStatus"><strong>saveStatus</strong></a>(self)</dt><dd><tt>Internal&nbsp;function.&nbsp;Used&nbsp;Internally</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>maxTweetsInWindow</strong> = 180</dl>
+
+<dl><dt><strong>statusFileSuffix</strong> = '_status'</dl>
+
+<dl><dt><strong>tweetStatus</strong> = {1: 'completed', 2: 'notCompleted', 3: 'error88', 4: 'error', 'completed': 1, 'error': 4, 'error88': 3, 'notCompleted': 2}</dl>
+
+<dl><dt><strong>tweetWindow</strong> = 900</dl>
+
+</td></tr></table>
+</body></html>

@@ -1,0 +1,40 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: class wnaParser</title>
+</head><body bgcolor="#f0f0f8">
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>corpusHandler.wnaParser</strong> = <a name="corpusHandler.wnaParser">class wnaParser</a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>wnaParser&nbsp;Class<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="wnaParser-__init__"><strong>__init__</strong></a>(self, wna_dir, wna_files)</dt><dd><tt>Initializes&nbsp;the&nbsp;class.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;wna_dir:&nbsp;Path&nbsp;to&nbsp;Word&nbsp;net&nbsp;affect&nbsp;corpus<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;wna_files:&nbsp;List&nbsp;of&nbsp;files&nbsp;in&nbsp;the&nbsp;corpus&nbsp;that&nbsp;need&nbsp;to&nbsp;be&nbsp;parsed.</tt></dd></dl>
+
+<dl><dt><a name="wnaParser-parse"><strong>parse</strong></a>(self, pickledFile)</dt><dd><tt>This&nbsp;function&nbsp;should&nbsp;be&nbsp;called&nbsp;after&nbsp;initialization&nbsp;and&nbsp;parses&nbsp;the&nbsp;wna&nbsp;corpus&nbsp;and&nbsp;saves&nbsp;in&nbsp;the&nbsp;pickledFile&nbsp;in&nbsp;python&nbsp;cPickle&nbsp;format.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;pickledFile:&nbsp;File&nbsp;to&nbsp;save&nbsp;the&nbsp;parsed&nbsp;wna&nbsp;corpus<br>
+&nbsp;<br>
+return:&nbsp;A&nbsp;Dictionary&nbsp;where&nbsp;keys&nbsp;are&nbsp;wna&nbsp;corpus&nbsp;emotion&nbsp;labels&nbsp;and&nbsp;values&nbsp;are&nbsp;list&nbsp;of&nbsp;words/synsets&nbsp;in&nbsp;that&nbsp;label<br>
+rtype:&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="wnaParser-parse_stemmed"><strong>parse_stemmed</strong></a>(self, pickledFile)</dt><dd><tt>This&nbsp;function&nbsp;should&nbsp;be&nbsp;called&nbsp;after&nbsp;initialization&nbsp;and&nbsp;parses&nbsp;the&nbsp;wna&nbsp;corpus&nbsp;and&nbsp;saves&nbsp;in&nbsp;the&nbsp;pickledFile&nbsp;in&nbsp;python&nbsp;cPickle&nbsp;format.<br>
+This&nbsp;function&nbsp;also&nbsp;stemms&nbsp;each&nbsp;word&nbsp;in&nbsp;the&nbsp;wna&nbsp;corpus.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;pickledFile:&nbsp;File&nbsp;to&nbsp;save&nbsp;the&nbsp;parsed&nbsp;wna&nbsp;corpus<br>
+&nbsp;<br>
+return:&nbsp;A&nbsp;Dictionary&nbsp;where&nbsp;keys&nbsp;are&nbsp;wna&nbsp;corpus&nbsp;emotion&nbsp;labels&nbsp;and&nbsp;values&nbsp;are&nbsp;list&nbsp;of&nbsp;words/synsets&nbsp;in&nbsp;that&nbsp;label<br>
+rtype:&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="wnaParser-stemTokens"><strong>stemTokens</strong></a>(self, tokens)</dt><dd><tt>Stems&nbsp;each&nbsp;element&nbsp;in&nbsp;the&nbsp;tokens&nbsp;list&nbsp;using&nbsp;Porters&nbsp;algorithm<br>
+:type&nbsp;tokens:&nbsp;list&nbsp;of&nbsp;unicode&nbsp;strings<br>
+:param&nbsp;tokens:&nbsp;list&nbsp;of&nbsp;unicode&nbsp;strings&nbsp;in&nbsp;the&nbsp;document<br>
+&nbsp;<br>
+:return:&nbsp;list&nbsp;of&nbsp;stemmed&nbsp;words&nbsp;<br>
+:rtype:&nbsp;list</tt></dd></dl>
+
+</td></tr></table>
+</body></html>

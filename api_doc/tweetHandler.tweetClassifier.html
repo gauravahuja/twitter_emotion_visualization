@@ -1,0 +1,45 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: class tweetClassifier</title>
+</head><body bgcolor="#f0f0f8">
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><strong>tweetHandler.tweetClassifier</strong> = <a name="tweetHandler.tweetClassifier">class tweetClassifier</a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>tweetClassifier&nbsp;Class<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="tweetClassifier-__init__"><strong>__init__</strong></a>(self, emotionDict)</dt><dd><tt>Initializes&nbsp;the&nbsp;tweetClassifier&nbsp;class.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;emotionDict:Dictionary&nbsp;that&nbsp;maps&nbsp;emotion&nbsp;to&nbsp;a&nbsp;number&nbsp;and&nbsp;vice&nbsp;versa.&nbsp;The&nbsp;numbers&nbsp;should&nbsp;be&nbsp;consecutive&nbsp;starting&nbsp;from&nbsp;1.</tt></dd></dl>
+
+<dl><dt><a name="tweetClassifier-corpusClassify"><strong>corpusClassify</strong></a>(self, testFile)</dt><dd><tt>Classifies&nbsp;all&nbsp;the&nbsp;tweets&nbsp;in&nbsp;the&nbsp;testfile.&nbsp;The&nbsp;test&nbsp;file&nbsp;has&nbsp;the&nbsp;same&nbsp;format&nbsp;as&nbsp;generated&nbsp;by&nbsp;the&nbsp;tweetFeatureExtractor&nbsp;class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;testFile:&nbsp;File&nbsp;name&nbsp;of&nbsp;the&nbsp;test&nbsp;file.&nbsp;Format&nbsp;of&nbsp;file:&nbsp;"true_emotion_id&nbsp;feature_1&nbsp;value_1&nbsp;...&nbsp;feature_n&nbsp;value_n"<br>
+&nbsp;<br>
+Outputs&nbsp;Statistics&nbsp;about&nbsp;the&nbsp;test.&nbsp;Recall,&nbsp;precision&nbsp;and&nbsp;Fmeasure&nbsp;are&nbsp;printed.<br>
+&nbsp;<br>
+return:&nbsp;Dictionary&nbsp;where&nbsp;key&nbsp;is&nbsp;the&nbsp;emotion_id&nbsp;and&nbsp;value&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;3&nbsp;containing&nbsp;the&nbsp;following&nbsp;precision,&nbsp;recall&nbsp;and&nbsp;Fmeasure.<br>
+rtype:&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="tweetClassifier-load"><strong>load</strong></a>(self, weightFile)</dt><dd><tt>Loads&nbsp;the&nbsp;weight&nbsp;vectors&nbsp;from&nbsp;the&nbsp;file&nbsp;outputed&nbsp;after&nbsp;training.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.weightFile:&nbsp;Output&nbsp;of&nbsp;train&nbsp;function<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;should&nbsp;be&nbsp;called&nbsp;before&nbsp;any&nbsp;classification&nbsp;function&nbsp;is&nbsp;called.</tt></dd></dl>
+
+<dl><dt><a name="tweetClassifier-train"><strong>train</strong></a>(self, trainCorpusFile, outputFile, megamPath<font color="#909090">=''</font>)</dt><dd><tt>This&nbsp;functions&nbsp;invokes&nbsp;the&nbsp;MEGA&nbsp;M&nbsp;optimization&nbsp;package&nbsp;to&nbsp;train&nbsp;on&nbsp;the&nbsp;corpus.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;trainCorpusFile:&nbsp;This&nbsp;file&nbsp;contains&nbsp;features&nbsp;of&nbsp;the&nbsp;tweet&nbsp;corpus&nbsp;as&nbsp;extracted&nbsp;by&nbsp;corpusExtract&nbsp;method&nbsp;of&nbsp;the&nbsp;tweetFeatureExtractor&nbsp;class.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;outputFile:&nbsp;The&nbsp;final&nbsp;weight&nbsp;vector&nbsp;used&nbsp;in&nbsp;the&nbsp;maximum&nbsp;entropy&nbsp;model&nbsp;are&nbsp;saved&nbsp;in&nbsp;this&nbsp;file.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;megamPath:&nbsp;It&nbsp;is&nbsp;the&nbsp;path&nbsp;to&nbsp;the&nbsp;directory&nbsp;where&nbsp;the&nbsp;megam&nbsp;package&nbsp;binary&nbsp;is&nbsp;stored.</tt></dd></dl>
+
+<dl><dt><a name="tweetClassifier-tweetClassify"><strong>tweetClassify</strong></a>(self, feature_dict, threshold<font color="#909090">=0.5</font>)</dt><dd><tt>Classifies&nbsp;a&nbsp;tweet.&nbsp;Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;feature_dict:&nbsp;Dictionary&nbsp;of&nbsp;features&nbsp;for&nbsp;the&nbsp;tweet&nbsp;as&nbsp;extracted&nbsp;by&nbsp;tweetFeatureExtractor&nbsp;class<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;threshold&nbsp;(optional):&nbsp;The&nbsp;threshold&nbsp;specifies&nbsp;the&nbsp;threshold&nbsp;probability&nbsp;for&nbsp;the&nbsp;tweet&nbsp;to&nbsp;be&nbsp;classified.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eg:&nbsp;If&nbsp;max&nbsp;probability&nbsp;of&nbsp;any&nbsp;class&nbsp;given&nbsp;this&nbsp;tweet&nbsp;feature&nbsp;is&nbsp;greater&nbsp;than&nbsp;the&nbsp;threshold&nbsp;the&nbsp;classifier&nbsp;goes&nbsp;ahead&nbsp;with&nbsp;classificaton&nbsp;else&nbsp;classifies&nbsp;the&nbsp;tweet&nbsp;as&nbsp;neutral,&nbsp;containing&nbsp;no&nbsp;emotion.&nbsp;Threshold&nbsp;can&nbsp;control&nbsp;the&nbsp;precision&nbsp;and&nbsp;recall.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+return:&nbsp;Emotion&nbsp;in&nbsp;the&nbsp;tweet.<br>
+rtype:&nbsp;Tuple&nbsp;(id,&nbsp;emotion)&nbsp;id&nbsp;is&nbsp;the&nbsp;emotion&nbsp;id&nbsp;as&nbsp;in&nbsp;emotionDict,&nbsp;and&nbsp;emotion&nbsp;is&nbsp;string.</tt></dd></dl>
+
+</td></tr></table>
+</body></html>
