@@ -12,10 +12,11 @@ from corpusHandler import *
 from tweetHandler import *
 import sys
 
-consumer_key="FPqNv44c0qEbfcaW1Nw8g"
-consumer_secret="1HBmN07H4oD2f7qtXgurb1dRc47lR84tU0E4WhhvM"
-access_key = "2189504173-Q8LwLKuilssZOOpBWXvDKOiztMDh2C4xVI6qx2J"
-access_token_secret = "aGyruiniveLYpBF04IA7nSDLcjExKhIge6wyTPPPafqgC"
+consumer_key=""
+consumer_secret=""
+access_key = ""
+access_token_secret = ""
+
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_token_secret)
 api = tweepy.API(auth, parser=tweepy.parsers.RawParser())

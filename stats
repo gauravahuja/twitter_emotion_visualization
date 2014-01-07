@@ -1,9 +1,0 @@
-Stats
-Emotion			Precision	Recall	F-measure
-joy				0.96		0.96		0.96
-sadness			1.00		0.92		0.96
-anger			0.99		0.96		0.97
-love			0.98		0.94		0.96
-fear			1.00		0.78		0.88
-thankfulness	1.00		0.92		0.96
-surprise		1.00		0.00		0.00
