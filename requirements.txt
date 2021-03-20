@@ -8,5 +8,5 @@ distribute==0.6.24
 itsdangerous==0.23
 nltk==3.4.5
 tweepy==2.1
-urllib3==1.7.1
+urllib3==1.24.2
 wsgiref==0.1.2
