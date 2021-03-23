@@ -8,4 +8,3 @@ itsdangerous
 nltk
 tweepy
 urllib3
-wsgiref
