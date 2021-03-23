@@ -4,7 +4,7 @@ MarkupSafe==1.1.1
 PyYAML==5.1
 Werkzeug==0.15.3
 argparse==1.2.1
-distribute==0.6.24
+distribute==0.7.3
 itsdangerous==0.23
 nltk==3.4.5
 tweepy==2.1
