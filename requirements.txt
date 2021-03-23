@@ -1,7 +1,6 @@
-setuptools==45
 Flask==1.0
 Jinja2==2.11.3
-MarkupSafe==0.18
+MarkupSafe==1.1.1
 PyYAML==5.1
 Werkzeug==0.15.3
 argparse==1.2.1
